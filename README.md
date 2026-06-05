@@ -4,7 +4,7 @@ Author: Sophie Xie
 
 ## Introduction
 
-*Coming soon.*
+Hawaii's economy is heavily tourism-driven, so we were wondering whether businesses in tourist areas differ in their online reputation, pricing, and visibility from other businesses elsewhere on the islands.
 
 ## Data Cleaning and Exploratory Data Analysis
 

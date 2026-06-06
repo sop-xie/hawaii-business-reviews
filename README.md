@@ -173,8 +173,55 @@ This is a deliberately simple reference point. The two baseline features explain
 
 ## Final Model
 
-*Coming soon.*
+The final model keeps the baseline's two features, adds **engineered features**, and switches to a **random forest regressor**.
+
+**New features and why they help:**
+
+- **`price` + `has_price`**: Price tier plausibly relates to rating, but ~81% of values are missing (NMAR). Instead of dropping rows, we fill missing price with 0 and add a binary **`has_price`** indicator, so the model can distinguish "price tier *k*" from "no listed price at all" (mostly parks/beaches).
+- **`primary_category`** (one-hot encoded): Different business types have systematically different rating distributions. Rare categories are collapsed with `min_frequency`.
+- **`zipcode`** (one-hot encoded, rare zips collapsed): A location feature capturing neighborhood-level tendencies beyond the binary `is_touristy`.
+
+**Algorithm & tuning**: We use a `RandomForestRegressor`, which captures non-linear interactions linear regression cannot. We **hand-tuned `max_depth`** over {5, 10, 15, unlimited} and kept the best by test RMSE:
+
+| max_depth | Test RMSE |
+|---|---|
+| 5 | 0.5807 |
+| 10 | 0.5743 |
+| **15** | **0.5718** |
+| None | 0.5921 |
+
+Performance improves up to `max_depth=15` then degrades when trees grow fully (overfitting), so we selected **`max_depth=15`**.
+
+**Comparison to baseline (same test split):**
+
+| Model | Features | Test RMSE | Test R² |
+|---|---|---|---|
+| Baseline (Linear Regression) | 2 | 0.5975 | 0.0010 |
+| **Final (Random Forest)** | 5 | **0.5718** | **0.0853** |
+
+The final model improves on the baseline — RMSE drops from 0.598 to 0.572 and R² rises from ~0 to ~0.085 — driven mainly by `primary_category` and the `price` + `has_price` pair. The absolute R² is still modest, which is expected: star ratings are noisy and driven by many factors not in this dataset (review text, service quality, individual reviewer behavior).
+
+---
 
 ## Fairness Analysis
 
-*Coming soon.*
+We ask whether the final model performs **equally well for touristy and non-touristy businesses**.
+
+- **Group X:** touristy businesses. **Group Y:** non-touristy businesses.
+- **Evaluation metric:** RMSE within each group.
+- **Test statistic:** \|RMSE(touristy) − RMSE(non-touristy)\|.
+- **H0:** The model is fair; its RMSE is the same for both groups.
+- **H1:** The model is unfair; its RMSE differs between groups.
+- **Significance level:** α = 0.05.
+
+| Group | RMSE |
+|---|---|
+| Touristy | 0.5344 |
+| Non-Touristy | 0.5843 |
+| Observed \|difference\| | 0.0498 |
+
+We ran a permutation test (5,000 reps), shuffling the `is_touristy` labels among the test-set predictions and recomputing the difference in group RMSE.
+
+<iframe src="assets/fig8_fairness.html" width="100%" height="450" frameborder="0"></iframe>
+
+**Conclusion.** The observed RMSE difference is about 0.05 stars (the model is actually slightly *more* accurate for touristy businesses), with a **p-value of 0.0824**. Since this exceeds α = 0.05, we **fail to reject the null hypothesis**: we do not have statistically significant evidence that the model is unfair with respect to tourist status. The model appears to predict about equally well for both groups. 

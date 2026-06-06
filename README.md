@@ -134,7 +134,7 @@ The observed difference in mean rating was **+0.0176 stars** (touristy 4.356 vs.
 
 **Response variable.** We chose `avg_rating` because it is the central quantity in our research question, and our hypothesis test already showed it differs between area types. A natural follow-up is how well we can *predict* a business's rating from its observable characteristics.
 
-**Features** (all known at the same time as the rating, so no leakage):
+**Features:**
 
 | Feature | Type |
 |---|---|
@@ -144,8 +144,15 @@ The observed difference in mean rating was **+0.0176 stars** (touristy 4.356 vs.
 | `primary_category` | nominal |
 | `zipcode` | nominal |
 
-**Evaluation metric.** We evaluate with **RMSE** (with R² as a secondary check). RMSE is appropriate for regression and is reported in the same units as the response (stars), making it easy to interpret. We use an 80/20 train/test split and report all performance on the held-out test set, using the *same* split for both models.
+**What we know at "time of prediction."** This is not a future-prediction task, we are predicting one *current* attribute of a business (`avg_rating`) from its other *current* attributes, all read from the same snapshot of the data. The relevant question is therefore: would each feature be observable at the moment we look up a business's rating, and is any feature derived *from* the rating itself (which would be leakage)?
 
+- `is_touristy`, `primary_category`, and `zipcode` are fixed descriptive properties of the business (its location and type) and are available at any time.
+- `price` is the business's listed price tier, set by the business and visible on its listing independent of its rating.
+- `num_of_reviews` is the count of reviews a business has accumulated. It is displayed right next to the rating on a Google Maps listing, so it is known whenever the rating is, and it is a *count*, so it does not encode the *value* of the rating.
+
+Crucially, **none of these features is computed from `avg_rating`**, so there is no leakage of the target into the inputs. We deliberately exclude anything that would only be known after (or as a function of) the rating.
+
+**Evaluation metric.** We evaluate with **RMSE** (with R² as a secondary check). RMSE is appropriate for regression and is reported in the same units as the response (stars), making it easy to interpret. We use an 80/20 train/test split and report all performance on the held-out test set, using the *same* split for both models.
 ## Baseline Model
 
 *Coming soon.*

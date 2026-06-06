@@ -128,7 +128,23 @@ The observed difference in mean rating was **+0.0176 stars** (touristy 4.356 vs.
 
 ## Framing a Prediction Problem
 
-*Coming soon.*
+**Prediction problem.** We predict a business's **`avg_rating`** (average star rating, 1–5).
+
+**Type.** This is a **regression** problem, because the response variable is continuous.
+
+**Response variable.** We chose `avg_rating` because it is the central quantity in our research question, and our hypothesis test already showed it differs between area types. A natural follow-up is how well we can *predict* a business's rating from its observable characteristics.
+
+**Features** (all known at the same time as the rating, so no leakage):
+
+| Feature | Type |
+|---|---|
+| `is_touristy` | nominal (boolean) |
+| `num_of_reviews` | quantitative |
+| `price` (+ `has_price`) | quantitative (ordinal 1–4) |
+| `primary_category` | nominal |
+| `zipcode` | nominal |
+
+**Evaluation metric.** We evaluate with **RMSE** (with R² as a secondary check). RMSE is appropriate for regression and is reported in the same units as the response (stars), making it easy to interpret. We use an 80/20 train/test split and report all performance on the held-out test set, using the *same* split for both models.
 
 ## Baseline Model
 

@@ -98,8 +98,8 @@ If we additionally collected data on **whether a business is a paid/commercial e
 
 We treated the missingness of `price` as our target and ran permutation tests against two columns:
 
-- **`primary_category`** — test statistic: total variation distance (TVD) between the category distributions of the price-missing and price-present groups.
-- **`is_touristy`** — test statistic: absolute difference in the proportion touristy across the two groups.
+- **`primary_category`** test statistic: total variation distance (TVD) between the category distributions of the price-missing and price-present groups.
+- **`is_touristy`**test statistic: absolute difference in the proportion touristy across the two groups.
 
 | Column tested | Observed statistic | p-value | Conclusion |
 |---|---|---|---|

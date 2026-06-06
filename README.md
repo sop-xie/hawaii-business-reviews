@@ -199,7 +199,7 @@ Performance improves up to `max_depth=15` then degrades when trees grow fully (o
 | Baseline (Linear Regression) | 2 | 0.5975 | 0.0010 |
 | **Final (Random Forest)** | 5 | **0.5718** | **0.0853** |
 
-The final model improves on the baseline — RMSE drops from 0.598 to 0.572 and R² rises from ~0 to ~0.085 — driven mainly by `primary_category` and the `price` + `has_price` pair. The absolute R² is still modest, which is expected: star ratings are noisy and driven by many factors not in this dataset (review text, service quality, individual reviewer behavior).
+The final model improves on the baseline: RMSE drops from 0.598 to 0.572 and R² rises from ~0 to ~0.085, which is driven mainly by `primary_category` and the `price` + `has_price` pair. The absolute R² is still modest, which is expected: star ratings are noisy and driven by many factors not in this dataset (review text, service quality, individual reviewer behavior).
 
 ---
 

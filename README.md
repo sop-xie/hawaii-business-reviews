@@ -65,6 +65,25 @@ Touristy businesses tend to have somewhat more reviews (higher median), consiste
 
 Touristy areas have a noticeably larger share of higher-priced (`$$$`, `$$$$`) businesses than non-touristy areas.
 
+### Interesting Aggregates
+
+Grouping by area type summarizes the three quantities in our research question:
+
+| area_type | n_businesses | mean_avg_rating | median_num_reviews | mean_price |
+|---|---|---|---|---|
+| Non-Touristy | 15,859 | 4.338 | 28.0 | 1.634 |
+| Touristy | 5,648 | 4.356 | 35.0 | 1.941 |
+
+And the share of each price tier within each area type:
+
+| area_type | $ | $$ | $$$ | $$$$ |
+|---|---|---|---|---|
+| Non-Touristy | 0.442 | 0.501 | 0.038 | 0.019 |
+| Touristy | 0.291 | 0.532 | 0.121 | 0.056 |
+
+Touristy businesses are higher on all three quantities: rating, review count, price.
+
+
 ## Assessment of Missingness
 
 *Coming soon.*

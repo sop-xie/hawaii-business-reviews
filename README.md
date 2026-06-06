@@ -108,7 +108,7 @@ We treated the missingness of `price` as our target and ran permutation tests ag
 
 <iframe src="assets/fig6_missingness.html" width="100%" height="450" frameborder="0"></iframe>
 
-The missingness of `price` **depends strongly on `primary_category`**: categories such as *Park* and *Beach* make up a much larger share of the price-missing group. In contrast, it **does not depend on `is_touristy`** (≈81.4% missing in non-touristy vs. ≈81.8% in touristy areas). This is consistent with our NMAR reasoning — whether a price is recorded is driven by *what kind of business it is*, not where it is — and means price comparisons between the two area types are not biased by differential missingness.
+The missingness of `price` **depends strongly on `primary_category`**: categories such as *Park* and *Beach* make up a much larger share of the price-missing group. In contrast, it **does not depend on `is_touristy`** (≈81.4% missing in non-touristy vs. ≈81.8% in touristy areas). This is consistent with our NMAR reasoning.
 
 ## Hypothesis Testing
 

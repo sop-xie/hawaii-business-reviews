@@ -90,7 +90,7 @@ Touristy businesses are higher on all three quantities: rating, review count, pr
 
 ### NMAR Analysis
 
-We believe the **`price`** column is **NMAR (Not Missing At Random)**. About 81% of businesses have no price tier, and whether a price is recorded depends on what kind of place it is: parks, beaches, scenic lookouts, and free attractions simply have no price to report, whereas restaurants and stores do. The chance that `price` is missing depends on the "has a price at all" nature of the business — a property of the value itself — which is the definition of NMAR.
+We believe the **`price`** column is **NMAR (Not Missing At Random)**. About 81% of businesses have no price tier, and whether a price is recorded depends on what kind of place it is: parks, beaches, scenic lookouts, and free attractions simply have no price to report, whereas restaurants and stores do. The chance that `price` is missing depends on the "has a price at all" nature of the business, a property of the value itself, which is the definition of NMAR.
 
 If we additionally collected data on **whether a business is a paid/commercial establishment vs. a free public space**, the missingness of `price` could plausibly be explained by that observed column, making it **MAR** instead.
 
@@ -153,9 +153,23 @@ The observed difference in mean rating was **+0.0176 stars** (touristy 4.356 vs.
 Crucially, **none of these features is computed from `avg_rating`**, so there is no leakage of the target into the inputs. We deliberately exclude anything that would only be known after (or as a function of) the rating.
 
 **Evaluation metric.** We evaluate with **RMSE** (with R² as a secondary check). RMSE is appropriate for regression and is reported in the same units as the response (stars), making it easy to interpret. We use an 80/20 train/test split and report all performance on the held-out test set, using the *same* split for both models.
+
 ## Baseline Model
 
-*Coming soon.*
+Our baseline is a **linear regression** predicting `avg_rating` from **two features**:
+
+- **`is_touristy`** — nominal (boolean), one-hot encoded.
+- **`num_of_reviews`** — quantitative, log-transformed (`log1p`) because it is extremely right-skewed.
+
+Everything is in a single `sklearn` `Pipeline` (a `ColumnTransformer` for preprocessing feeding a `LinearRegression`), so no information leaks from the test set.
+
+| Metric | Value |
+|---|---|
+| Test RMSE | 0.5975 |
+| Test R² | 0.0010 |
+
+This is a deliberately simple reference point. The two baseline features explain almost none of the rating variance, which makes sense because the touristy effect is tiny and review count alone says little about quality, which leaving room for the final model to improve.
+
 
 ## Final Model
 

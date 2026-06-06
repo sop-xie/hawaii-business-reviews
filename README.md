@@ -110,10 +110,21 @@ We treated the missingness of `price` as our target and ran permutation tests ag
 
 The missingness of `price` **depends strongly on `primary_category`**: categories such as *Park* and *Beach* make up a much larger share of the price-missing group. In contrast, it **does not depend on `is_touristy`** (≈81.4% missing in non-touristy vs. ≈81.8% in touristy areas). This is consistent with our NMAR reasoning — whether a price is recorded is driven by *what kind of business it is*, not where it is — and means price comparisons between the two area types are not biased by differential missingness.
 
-
 ## Hypothesis Testing
 
-*Coming soon.*
+We focus on the **ratings** part of our research question.
+
+- **Null hypothesis (H0):** The mean `avg_rating` of touristy and non-touristy businesses is the same; any observed difference is due to chance.
+- **Alternative hypothesis (H1):** The mean `avg_rating` of touristy businesses is **higher** than that of non-touristy businesses.
+- **Test statistic:** difference in group means, *mean(touristy) − mean(non-touristy)* (a one-sided, directional statistic).
+- **Method:** permutation test (10,000 permutations).
+- **Significance level:** α = 0.05.
+
+The observed difference in mean rating was **+0.0176 stars** (touristy 4.356 vs. non-touristy 4.338), with a **p-value of 0.0222**.
+
+<iframe src="assets/fig7_hyptest.html" width="100%" height="450" frameborder="0"></iframe>
+
+**Conclusion.** Since the p-value (0.022) is below α = 0.05, we **reject the null hypothesis**. This provides statistically significant evidence that businesses in touristy Hawaiian zip codes tend to have somewhat higher average ratings. 
 
 ## Framing a Prediction Problem
 

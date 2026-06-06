@@ -40,6 +40,31 @@ The cleaned `locations` data has **5,648** touristy and **15,859** non-touristy 
 | 2 Cheesy Guys | 96793 | NaN | Food court | False | 5.0 | 6 |
 | Kraken Coffee Kahului | 96732 | 1.0 | Coffee shop | False | 4.8 | 8 |
 
+
+### Univariate Analysis
+
+<iframe src="assets/fig1_rating.html" width="100%" height="450" frameborder="0"></iframe>
+
+`avg_rating` is heavily **left-skewed**: most businesses sit between 4 and 5 stars, with a long tail toward lower ratings.
+
+<iframe src="assets/fig2_reviews.html" width="100%" height="450" frameborder="0"></iframe>
+
+`num_of_reviews` is extremely **right-skewed** (median 13, max in the thousands), so we plot its count on a log scale to make the tail visible.
+
+### Bivariate Analysis
+
+<iframe src="assets/fig3_rating_by_area.html" width="100%" height="450" frameborder="0"></iframe>
+
+The rating distributions for touristy and non-touristy businesses are very similar, with touristy areas shifted only slightly higher.
+
+<iframe src="assets/fig4_reviews_by_area.html" width="100%" height="450" frameborder="0"></iframe>
+
+Touristy businesses tend to have somewhat more reviews (higher median), consistent with greater foot traffic.
+
+<iframe src="assets/fig5_price_by_area.html" width="100%" height="450" frameborder="0"></iframe>
+
+Touristy areas have a noticeably larger share of higher-priced (`$$$`, `$$$$`) businesses than non-touristy areas.
+
 ## Assessment of Missingness
 
 *Coming soon.*

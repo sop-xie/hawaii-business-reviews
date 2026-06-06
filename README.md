@@ -94,6 +94,23 @@ We believe the **`price`** column is **NMAR (Not Missing At Random)**. About 81%
 
 If we additionally collected data on **whether a business is a paid/commercial establishment vs. a free public space**, the missingness of `price` could plausibly be explained by that observed column, making it **MAR** instead.
 
+### Missingness Dependency
+
+We treated the missingness of `price` as our target and ran permutation tests against two columns:
+
+- **`primary_category`** — test statistic: total variation distance (TVD) between the category distributions of the price-missing and price-present groups.
+- **`is_touristy`** — test statistic: absolute difference in the proportion touristy across the two groups.
+
+| Column tested | Observed statistic | p-value | Conclusion |
+|---|---|---|---|
+| `primary_category` | TVD = 0.759 | ≈ 0.000 | Missingness **depends** on it |
+| `is_touristy` | \|diff\| = 0.006 | ≈ 0.483 | Missingness does **not** depend on it |
+
+<iframe src="assets/fig6_missingness.html" width="100%" height="450" frameborder="0"></iframe>
+
+The missingness of `price` **depends strongly on `primary_category`**: categories such as *Park* and *Beach* make up a much larger share of the price-missing group. In contrast, it **does not depend on `is_touristy`** (≈81.4% missing in non-touristy vs. ≈81.8% in touristy areas). This is consistent with our NMAR reasoning — whether a price is recorded is driven by *what kind of business it is*, not where it is — and means price comparisons between the two area types are not biased by differential missingness.
+
+
 ## Hypothesis Testing
 
 *Coming soon.*

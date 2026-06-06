@@ -8,7 +8,7 @@ Hawaii's economy is heavily tourism-driven, so we were wondering whether busines
 
 There are two datasets we're working with:
 
-- **`locations`**: one row per business — **21,507** businesses — with columns:`gmap_id`, `address`, `avg_rating`, `num_of_reviews`, `price`, `category`.
+- **`locations`**: one row per business, **21,507** businesses, with columns:`gmap_id`, `address`, `avg_rating`, `num_of_reviews`, `price`, `category`.
 - **`reviews`**: one row per individual review (~1.5 million reviews), with columns: `user_id`, `rating`, `gmap_id`, `time`.
 
 And here are the columns most relevant to this analysis:

@@ -88,7 +88,11 @@ Touristy businesses are higher on all three quantities: rating, review count, pr
 
 ## Assessment of Missingness
 
-*Coming soon.*
+### NMAR Analysis
+
+We believe the **`price`** column is **NMAR (Not Missing At Random)**. About 81% of businesses have no price tier, and whether a price is recorded depends on what kind of place it is: parks, beaches, scenic lookouts, and free attractions simply have no price to report, whereas restaurants and stores do. The chance that `price` is missing depends on the "has a price at all" nature of the business — a property of the value itself — which is the definition of NMAR.
+
+If we additionally collected data on **whether a business is a paid/commercial establishment vs. a free public space**, the missingness of `price` could plausibly be explained by that observed column, making it **MAR** instead.
 
 ## Hypothesis Testing
 

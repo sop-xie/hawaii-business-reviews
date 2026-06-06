@@ -25,11 +25,13 @@ The columns most relevant to this analysis:
 
 To clean the dataset, we did the following steps:
 
-1. **`reviews`** — kept the columns we use (`user_id`, `rating`, `gmap_id`, `time`) and converted the Unix-millisecond `time` field to a datetime. These columns have no missing values.
-2. **`price` → numeric.** The raw `price` column stores strings like `$`, `$$`. We mapped them to integers 1–4; non-matching values (including `None`) became `NaN`. About **81%** of businesses have a missing price, but it's mostly parks, beaches, and attractions that have no price tier, so the missingness is structural (explored below).
-3. **`zipcode` from `address`.** Hawaii addresses follow the pattern `"Name, Street, City, HI ZIPCODE"`, so we extracted the 5-digit zip with a regular expression.
-4. **`primary_category` from `category`.** The `category` column holds an array per business; we kept the first entry.
-5. **`is_touristy`.** A business is *touristy* if its zip code is in a curated list of well-known Hawaiian tourist zip codes (Waikiki, Lahaina/Kaanapali, Kailua-Kona, Poipu, etc.), taken from [hawaii-guide.com](https://www.hawaii-guide.com/hawaii-zip-codes).
+1. **`reviews`** → kept the columns we use (`user_id`, `rating`, `gmap_id`, `time`) and converted the Unix-millisecond `time` field to a datetime. These columns have no missing values.
+2. **`price`** → The raw `price` column stores strings like `$`, `$$`. We mapped them to integers 1–4; non-matching values (including `None`) became `NaN`. About **81%** of businesses have a missing price, but it's mostly parks, beaches, and attractions that have no price tier, so the missingness is structural (explored below).
+3. **`zipcode` from `address`** → Hawaii addresses follow the pattern `"Name, Street, City, HI ZIPCODE"`, so we extracted the 5-digit zip with a regular expression.
+4. **`primary_category` from `category`** → The `category` column holds an array per business; we kept the first entry.
+5. **`is_touristy`** → A business is *touristy* if its zip code is in a curated list of well-known Hawaiian tourist zip codes (Waikiki, Lahaina/Kaanapali, Kailua-Kona, Poipu, etc.), taken from [hawaii-guide.com](https://www.hawaii-guide.com/hawaii-zip-codes).
+
+
 
 ## Assessment of Missingness
 

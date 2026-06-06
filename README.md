@@ -158,8 +158,8 @@ Crucially, **none of these features is computed from `avg_rating`**, so there is
 
 Our baseline is a **linear regression** predicting `avg_rating` from **two features**:
 
-- **`is_touristy`** — nominal (boolean), one-hot encoded.
-- **`num_of_reviews`** — quantitative, log-transformed (`log1p`) because it is extremely right-skewed.
+- **`is_touristy`**: nominal (boolean), one-hot encoded.
+- **`num_of_reviews`**: quantitative, log-transformed (`log1p`) because it is extremely right-skewed.
 
 Everything is in a single `sklearn` `Pipeline` (a `ColumnTransformer` for preprocessing feeding a `LinearRegression`), so no information leaks from the test set.
 

@@ -31,7 +31,14 @@ To clean the dataset, we did the following steps:
 4. **`primary_category` from `category`** → The `category` column holds an array per business; we kept the first entry.
 5. **`is_touristy`** → A business is *touristy* if its zip code is in a curated list of well-known Hawaiian tourist zip codes (Waikiki, Lahaina/Kaanapali, Kailua-Kona, Poipu, etc.), taken from [hawaii-guide.com](https://www.hawaii-guide.com/hawaii-zip-codes).
 
+The cleaned `locations` data has **5,648** touristy and **15,859** non-touristy businesses. The head of the cleaned dataframe looks like:
 
+| name | zipcode | price | primary_category | is_touristy | avg_rating | num_of_reviews |
+|---|---|---|---|---|---|---|
+| Hale Pops | 96762 | NaN | Restaurant | False | 4.4 | 18 |
+| SMP - Single Marine Program | 96734 | NaN | Recreation center | False | 4.1 | 18 |
+| 2 Cheesy Guys | 96793 | NaN | Food court | False | 5.0 | 6 |
+| Kraken Coffee Kahului | 96732 | 1.0 | Coffee shop | False | 4.8 | 8 |
 
 ## Assessment of Missingness
 
